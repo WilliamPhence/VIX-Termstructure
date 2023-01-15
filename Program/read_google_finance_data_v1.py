@@ -59,4 +59,4 @@ def read_google_data(raw_data):
     df_merged['VX3M/VX'] = df_merged['3M_Close'] / df_merged['vx_Close']
     
     # Create a csv and save it to be used in a different module
-    df_merged.to_csv('C:\Python Projects\VIX Term Structure Project\Data\MERGED DATA.csv')
+    df_merged.to_csv('C:\Python Projects\VIX Term Structure Project\data-master\MERGED DATA.csv')
