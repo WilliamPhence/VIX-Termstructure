@@ -2,12 +2,15 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from datetime import datetime
 
-def plot_SPX_vs_ratios(data_file):
-# Create a dataframe using the data from the csv file
+def plot_SPX_vs_ratios(data_file, start_date, end_date):
+
+    # Create a dataframe using the data from the csv file
     df_data = pd.read_csv(data_file)
 
-    # set index equal to dates
+    # format Date to be in datetime & set index equal to dates
+    df_data['Date'] = pd.to_datetime(df_data['Date'], utc=True).dt.date
     df_data.set_index('Date', inplace=True)
 
     # Create a plot & Declare first axis
@@ -48,4 +51,5 @@ def plot_SPX_vs_ratios(data_file):
     ax1.set_ylabel("SPX Closing Marks")
     ax2.set_ylabel('Ratio(s) Closing Marks')
     ax1.set_xlabel('Dates (Month-Year)')
+    plt.savefig(f"C:\Python Projects\VIX Term Structure Project\\figures\ SPX vs Ratios {start_date} to {end_date}.png", dpi=1000, bbox_inches='tight', pad_inches=0.5)
     plt.show()

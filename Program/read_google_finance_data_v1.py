@@ -1,11 +1,12 @@
 # import libraries
 import pandas as pd
 
-def read_google_data(raw_data):
+def read_google_data(raw_data, start_date):
+
     # Open the files and create pandas data frames
     # Create one dataframe per variable & combine them later
     database = pd.read_csv(raw_data)
-    
+
     spx = database[['Date', 'Close']].copy()
     vix_9D = database[['Date.1', 'Close.1']].copy()
     vix = database[['Date.2', 'Close.2']].copy()
@@ -50,6 +51,10 @@ def read_google_data(raw_data):
     df_merged = pd.merge(df_merged, vix_3M, on=['Date'])
     df_merged = pd.merge(df_merged, vix_6M, on=['Date'])
     df_merged = pd.merge(df_merged, vix_1Y, on=['Date'])
+
+    # Convert merged df date column to datetime format and cut off based on start date
+    df_merged['Date'] = pd.to_datetime(df_merged['Date'], utc=True).dt.date
+    df_merged = df_merged.loc[df_merged['Date'] > start_date]
 
     # Calculate ratios and add to dataframe
     df_merged['VX1Y/VX'] = df_merged['1Y_Close'] / df_merged['vx_Close']
