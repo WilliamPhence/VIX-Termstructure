@@ -25,5 +25,3 @@ plot_SPX_vs_vol_indexes(data_file)
 data = pd.DataFrame(pd.read_csv(data_file))
 
 delete_temp_files(temp_data)
-
-print(data)
