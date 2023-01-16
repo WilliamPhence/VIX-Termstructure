@@ -11,4 +11,3 @@ def delete_temp_files(temp_data):
                 os.rmdir(file_path)
         except Exception as e:
             print('Failed to delete %s. Reason: %s' % (file_path, e))
-
