@@ -2,7 +2,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-import datetime
 
 
 def plot_SPX_vs_vol_indexes(data_file, start_date, end_date):
@@ -69,7 +68,7 @@ def plot_SPX_vs_vol_indexes(data_file, start_date, end_date):
     # Format the axes
     ax1.xaxis.set_major_formatter(mdates.DateFormatter('%b-%y'))
     ax1.xaxis.set_major_locator(mdates.MonthLocator(interval=3))
-    ax1.set_title('SPX vs VIX Indicies')
+    ax1.set_title(f'SPX vs VIX Indicies ({start_date}) to ({end_date})')
     ax1.set_ylabel("SPX Closing Marks")
     ax2.set_ylabel('VIX Index Closing Marks')
     ax1.set_xlabel('Dates (Month-Year)')
