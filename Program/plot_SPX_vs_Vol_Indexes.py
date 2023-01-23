@@ -7,7 +7,7 @@ import matplotlib.dates as mdates
 def plot_SPX_vs_vol_indexes(data_file, start_date, end_date):
 
         # Create a dataframe using the data from the csv file
-    df_data = pd.read_csv(data_file)
+    df_data = pd.DataFrame(data_file)
 
     # format Date to be in datetime & set index equal to dates
     df_data['Date'] = pd.to_datetime(df_data['Date'], utc=True).dt.date
@@ -62,8 +62,6 @@ def plot_SPX_vs_vol_indexes(data_file, start_date, end_date):
          'VIX 1Y',
          ),
         loc='lower right')
-    
-    print(df_data)
 
     # Format the axes
     ax1.xaxis.set_major_formatter(mdates.DateFormatter('%b-%y'))
@@ -74,5 +72,5 @@ def plot_SPX_vs_vol_indexes(data_file, start_date, end_date):
     ax1.set_xlabel('Dates (Month-Year)')
 
     # Show the plot
-    plt.savefig(f"C:\Python Projects\VIX Term Structure Project\\figures\ SPX vs Vol Indicies {start_date} to {end_date}.png", dpi=1000, bbox_inches='tight', pad_inches=0.5)
+    plt.savefig(f"C:\\Users\dvjkr\Pictures\charts\ SPX vs Vol Indicies {start_date} to {end_date}.png", dpi=1000, bbox_inches='tight', pad_inches=0.5)
     plt.show()

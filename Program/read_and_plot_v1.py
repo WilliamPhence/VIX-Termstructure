@@ -12,9 +12,6 @@ from datetime import date
 # Raw data gets processed by read google data are for read_google_data
 raw_data = 'C:\Python Projects\VIX Term Structure Project\data-master\DATA - MASTER.csv'
 
-# This is the output of read google data that gets plotted by plot functions
-data_file = 'C:\Python Projects\VIX Term Structure Project\data-master\MERGED DATA.csv'
-
 # Declare folder path for temp files that will be deleted
 temp_data = "C:\Python Projects\VIX Term Structure Project\\temp-data"
 
@@ -26,11 +23,13 @@ start_date_str = start_date
 start_date = pd.to_datetime(start_date)
 end_date = date.today()
 
-# Run functions
-read_google_data(raw_data, start_date)
-plot_SPX_vs_ratios(data_file, start_date_str, end_date)
-plot_SPX_vs_vol_indexes(data_file, start_date_str, end_date)
+# This is the output of read google data that gets plotted by plot functions
+data = read_google_data(raw_data, start_date)
+data = pd.DataFrame(data)
 
-data = pd.DataFrame(pd.read_csv(data_file))
+# Run functions
+
+plot_SPX_vs_ratios(data, start_date_str, end_date)
+plot_SPX_vs_vol_indexes(data, start_date_str, end_date)
 
 delete_temp_files(temp_data)
