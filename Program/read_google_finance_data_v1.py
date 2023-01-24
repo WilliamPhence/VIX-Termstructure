@@ -49,7 +49,6 @@ def read_google_data(raw_data, start_date):
     daatteee = df_merged['Date']
     print(f"merged data format : {type(daatteee)}")
     print(f"start date format : {type(start_date)}")
-
     start_date = pd.Timestamp(start_date)
     print(f"start date format post pandas: {type(start_date)}")
     ### THIS OUTPUTS SOME WARNING THAT IN FUTURE VERSIONS THIS COMPARISON WILL NOT WORK
