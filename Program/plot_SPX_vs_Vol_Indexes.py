@@ -4,14 +4,17 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 
-def plot_SPX_vs_vol_indexes(data_file, start_date, end_date):
+def plot_SPX_vs_vol_indexes(data_file):
 
-        # Create a dataframe using the data from the csv file
+    # Create a dataframe using the data from the csv file
     df_data = pd.DataFrame(data_file)
+
 
     # format Date to be in datetime & set index equal to dates
     df_data['Date'] = pd.to_datetime(df_data['Date'], utc=True).dt.date
     df_data.set_index('Date', inplace=True)
+    first_date = df_data.index[0]
+    last_date = df_data.index[-1]
     
     # Create a plot & Declare first axis
     fig, ax1 = plt.subplots()
@@ -66,11 +69,11 @@ def plot_SPX_vs_vol_indexes(data_file, start_date, end_date):
     # Format the axes
     ax1.xaxis.set_major_formatter(mdates.DateFormatter('%b-%y'))
     ax1.xaxis.set_major_locator(mdates.MonthLocator(interval=3))
-    ax1.set_title(f'SPX vs VIX Indicies ({start_date}) to ({end_date})')
+    ax1.set_title(f'SPX vs VIX Indicies ({first_date}) to ({last_date})')
     ax1.set_ylabel("SPX Closing Marks")
     ax2.set_ylabel('VIX Index Closing Marks')
     ax1.set_xlabel('Dates (Month-Year)')
 
     # Show the plot
-    plt.savefig(f"C:\\Users\dvjkr\Pictures\charts\ SPX vs Vol Indicies {start_date} to {end_date}.png", dpi=1000, bbox_inches='tight', pad_inches=0.5)
+    plt.savefig(f"C:\\Users\dvjkr\Pictures\charts\ SPX vs Vol Indicies {first_date} to {last_date}.png", dpi=1000, bbox_inches='tight', pad_inches=0.5)
     plt.show()

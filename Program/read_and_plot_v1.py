@@ -11,9 +11,6 @@ raw_data = 'C:\Python Projects\VIX Term Structure Project\data-master\DATA - MAS
 
 # Ask user for input & inform them about dataset limits
 start_date = input("Provide a start date (2018-06-08 or later) : ")
-# store the string input from the user
-start_date_str = start_date
-# format start date to datetime
 start_date = pd.to_datetime(start_date)
 end_date = date.today()
 
@@ -22,5 +19,5 @@ data = read_google_data(raw_data, start_date)
 data = pd.DataFrame(data)
 
 # Run plot functions
-plot_SPX_vs_ratios(data, start_date_str, end_date)
-plot_SPX_vs_vol_indexes(data, start_date_str, end_date)
+plot_SPX_vs_ratios(data)
+plot_SPX_vs_vol_indexes(data)
